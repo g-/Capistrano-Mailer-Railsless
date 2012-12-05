@@ -1,6 +1,6 @@
 class CapRailslessMailer < ActionMailer::Base
 
-  @@default_base_config ||= {
+  @@default_base_config ||= ActiveSupport::InheritableOptions.new({
     :sender_address           => %("Capistrano Deployment" <capistrano.mailer@example.com>),
     :recipient_addresses      => [],
     # Customize the subject line
@@ -11,7 +11,7 @@ class CapRailslessMailer < ActionMailer::Base
     :site_name                => "",
     :format                   => :html,
     :view_path                => "#{File.dirname(__FILE__)}/../views"
-  }
+  })
 
   cattr_accessor :default_base_config
   attr_accessor  :config, :options
